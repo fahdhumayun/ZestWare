@@ -2,15 +2,15 @@
 # Group # 8 - Restaurant Automation
 
 ### Team:
-| Name               | Email                          | Subgroup   |
-| ------------------ | ------------------------------ | -----------|
-| Shepar Sohail      | ss2467@scarletmail.rutgers.edu | Customer   |
-| Raphaelle Marcial  | rm1096@scarletmail.rutgers.edu | Management |
-| Ama Freeman        | ama.freeman96@gmail.com        | Management |
-| Fahd Humayun       | fh186@scarletmail.rutgers.edu  | Customer   |
-| Nathan Morgenstern | ncmorgenstern@gmail.com        | Customer   |
-| Alex Dewey         | amd341@scarletmail.rutgers.edu | Kitchen    |
-| Dwayne W Anthony   | dwa29@scarletmail.rutgers.edu  | Kitchen    |
+| Name               | Email                          | Subgroup      |
+| ------------------ | ------------------------------ | -----------   |
+| Shehpar Sohail     | ss2467@scarletmail.rutgers.edu | Customer      |
+| Raphaelle Marcial  | rm1096@scarletmail.rutgers.edu | Management    |
+| Ama Freeman        | ama.freeman96@gmail.com        | Management    |
+| Fahd Humayun       | fh186@scarletmail.rutgers.edu  | Customer      |
+| Nathan Morgenstern | ncmorgenstern@gmail.com        | Customer      |
+| Alex Dewey         | amd341@scarletmail.rutgers.edu | Kitchen/Waiter|
+| Dwayne W Anthony   | dwa29@scarletmail.rutgers.edu  | Kitchen/Waiter|
 
 
 ## Deliverables:
@@ -34,9 +34,20 @@ Each source code file should have at the top information about the student who a
 ```
 
 ## Resources
-<ul>
-<li> [git-guide](http://rogerdudler.github.io/git-guide/) </li>
-<li> [Git Video Tutorial](https://www.youtube.com/watch?v=r63f51ce84A) </li>
-<li> [Helpful markdown reference](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) :octocat: </li>
-<li> [Free tools for students](https://education.github.com/pack):thumbsup: </li>
 
+### Github/git:
+
+- [git-guide](http://rogerdudler.github.io/git-guide)
+- [Git Video Tutorial](https://www.youtube.com/watch?v=r63f51ce84A)
+- [Helpful markdown reference](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) :octocat:
+
+
+### UML:
+- [Gliffy](https://www.gliffy.com)
+- [StarUML](http://staruml.io)
+- [ArgoUML](http://argouml.tigris.org)
+
+### General:
+
+- [Free tools for students](https://education.github.com/pack):thumbsup:
+- [General Project information](http://www.ece.rutgers.edu/~marsic/Teaching/SE/projects.html)
