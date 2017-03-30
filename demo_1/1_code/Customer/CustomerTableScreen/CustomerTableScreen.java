@@ -87,7 +87,8 @@ public class CustomerTableScreen extends JFrame implements ActionListener {
       CallAssistance ca = new CallAssistance(tableID);
     }
     if ( source == entertainment){
-      //setVisible(false);
+      setVisible(false);
+      UnderConstruction uc = new UnderConstruction(tableID);
       //Entertainment e = new Entertainment(tableID);
     }
   }
