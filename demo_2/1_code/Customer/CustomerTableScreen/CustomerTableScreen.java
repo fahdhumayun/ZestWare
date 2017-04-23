@@ -76,8 +76,7 @@ public class CustomerTableScreen extends JFrame implements ActionListener {
 
     if (source == placeOrder) {
       setVisible(false);
-      TestScroll ts = new TestScroll(tableID);
-      //PlaceOrder po = new PlaceOrder(tableID);
+      PlaceOrder po = new PlaceOrder(tableID);
     }
     if ( source == makePayment){
       setVisible(false);
