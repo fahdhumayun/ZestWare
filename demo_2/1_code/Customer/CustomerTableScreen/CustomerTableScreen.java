@@ -92,10 +92,10 @@ public class CustomerTableScreen extends JFrame implements ActionListener {
     }
   }
 
-  public static void main(String[] args){
+  /*public static void main(String[] args){
     //Call the CustomerTableScreen Setup
     CustomerTableScreen cts = new CustomerTableScreen(1);
 
-  }
+  }*/
 
 } //end class CustomerTableScreen

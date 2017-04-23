@@ -4,17 +4,20 @@ import java.awt.*;
 import java.util.*;
 import java.math.*;
 import java.lang.*;
+import javax.swing.table.*;
 
 public class PlaceOrder extends JFrame implements ActionListener
 {
-  JPanel billPane;
   JTabbedPane tabPane;
 
   BigDecimal total = new BigDecimal("0.00");
+  //JButtons for the billpane
+  JButton back;
+  JButton confirm;
   //JBUttons for the food pane including meats,
-  JButton mangoChicken;
-  JButton orangeChicken;
-  JButton sesameChicken;
+  JButton mangoChicken;  JButton grilledSalmon;  JButton spaghetti;
+  JButton orangeChicken; JButton grilledChicken; JButton lasagna;
+  JButton sesameChicken; JButton chickenWings;   JButton ravioli;
   //JButtons for the drink pane including soft drinks, juice, and milk shakes
   JButton coke;   JButton strawMilk; JButton orangeJuice;
   JButton pepsi;  JButton chocMilk;  JButton grapeJuice;
@@ -28,7 +31,35 @@ public class PlaceOrder extends JFrame implements ActionListener
   JButton vanIceCream;    JButton cheeseCake;
   JButton strawIceCream;  JButton carrotCake;
 
+  //Other variables needed for the functionality
   int tableID;
+
+  String[][] foodArray = {
+    {"Orange Chicken", "Mango Chicken", "Sesame Chicken","Grilled Salmon", "Grilled Chicken",
+     "Chicken Wings", "Spaghetti and Meatballs","Lasagna", "Ravioli"},
+    {"0", "0", "0","0","0","0"},
+  };
+  String[][] drinkArray = {
+    {"Coke", "Pepsi", "Sprite","Orange Juice", "Grape Juice", "Apple Juice",
+    "Chocolate Shake", "Vanilla Shake", "Strawberry Shake"},
+    {"0","0","0","0","0","0","0","0","0"},
+  };
+  String[][] appetizerArray = {
+    {"Caesar Salad","Fruit Salad","Vegetable Salad","French Fries","Mozzarella Sticks","Onion Rings"},
+    {"0","0","0","0","0","0"},
+  };
+  String[][] dessertArray = {
+    {"Chocolate Ice Cream","Vanilla Ice Cream","Strawberry Ice Cream","Red Velvet Cake","Cheese Cake","Carrot Cake"},
+    {"0","0","0","0","0","0"},
+  };
+  String[][] currentOrder = {
+    {" "," "," "," "," "," "," "," "," "," "},
+    {"0","0","0","0","0","0","0","0","0","0"},
+  };
+
+
+  // add header of the table
+
 
   public PlaceOrder(int table_id)
   {
@@ -41,7 +72,6 @@ public class PlaceOrder extends JFrame implements ActionListener
     JPanel appetizerPane = appetizerPane();
     JPanel dessertPane   = dessertPane();
     JPanel billPane      = billPane(total);
-
 
     //Set up JScrollPane for scrolling ability in the food Pane
     JScrollPane scrollFrame = new JScrollPane(foodPane,
@@ -100,19 +130,40 @@ public JPanel foodPane()
   foodPane.setLayout(null);
   Font defaultFont = new Font("Cambria", Font.BOLD, 12);
   Font headerFont  = new Font("Cambria", Font.BOLD, 30);
-  //Image Icons setup for food items
+  //Image Icons setup for food items on the food panel
   ImageIcon orangeChicken_Icon = new ImageIcon("menuImages/food/orangeChicken.jpg");
   ImageIcon mangoChicken_Icon  = new ImageIcon("menuImages/food/mangoChicken.jpg");
   ImageIcon sesameChicken_Icon = new ImageIcon("menuImages/food/sesameChicken.jpg");
 
-  //Setting up the image postions with setBounds() for food panel
-  orangeChicken   = new JButton(orangeChicken_Icon);
-  orangeChicken.setBounds(50,150,200,150);
+  ImageIcon grilledSalmon_Icon  = new ImageIcon("menuImages/food/grilledSalmon.jpg");
+  ImageIcon grilledChicken_Icon = new ImageIcon("menuImages/food/grilledChicken.jpg");
+  ImageIcon chickenWings_Icon   = new ImageIcon("menuImages/food/grilledChickenWings.jpg");
+
+  ImageIcon spaghetti_Icon      = new ImageIcon("menuImages/food/spaghetti.jpg");
+  ImageIcon lasagna_Icon        = new ImageIcon("menuImages/food/lasagna.jpg");
+  ImageIcon ravioli_Icon        = new ImageIcon("menuImages/food/ravioli.jpg");
+  //Setting the JButton images for each of the food panel items
+  orangeChicken  = new JButton(orangeChicken_Icon);
   mangoChicken   = new JButton(mangoChicken_Icon);
+  sesameChicken  = new JButton(sesameChicken_Icon);
+  grilledSalmon  = new JButton(grilledSalmon_Icon);
+  grilledChicken = new JButton(grilledChicken_Icon);
+  chickenWings   = new JButton(chickenWings_Icon);
+  spaghetti      = new JButton(spaghetti_Icon);
+  lasagna        = new JButton(lasagna_Icon);
+  ravioli        = new JButton(ravioli_Icon);
+
+  orangeChicken.setBounds(50,150,200,150);
   mangoChicken.setBounds(275,150,200,150);
-  sesameChicken = new JButton(sesameChicken_Icon);
   sesameChicken.setBounds(500,150,200,150);
 
+  grilledSalmon.setBounds(50,375,200,150);
+  grilledChicken.setBounds(275,375,200,150);
+  chickenWings.setBounds(500,375,200,150);
+
+  spaghetti.setBounds(50,600,200,150);
+  lasagna.setBounds(275,600,200,150);
+  ravioli.setBounds(500,600,200,150);
   //Setting the fonts and location of the menu headers
   JLabel mainEntree = new JLabel("Main Entrees");
   mainEntree.setBounds(300,5,200,150);
@@ -120,29 +171,71 @@ public JPanel foodPane()
   JLabel food1 = new JLabel("Orange Chicken....$8.75");
   JLabel food2 = new JLabel("Mango  Chicken....$8.75");
   JLabel food3 = new JLabel("Sesame Chicken....$8.75");
+
+  JLabel food4 = new JLabel("Grilled Salmon....$8.25");
+  JLabel food5 = new JLabel("Grilled Chicken....$7.75");
+  JLabel food6 = new JLabel("Chicken Wings....$7.75");
+
+  JLabel food7 = new JLabel("Spaghetti....$5.95");
+  JLabel food8 = new JLabel("Lasagna....$6.75");
+  JLabel food9 = new JLabel("Ravioli....$6.25");
   //Setting the font and location of the food panel items
   food1.setBounds(80,250,200,150);
   food2.setBounds(300,250,200,150);
   food3.setBounds(520,250,200,150);
+
+  food4.setBounds(80,475,200,150);
+  food5.setBounds(300,475,200,150);
+  food6.setBounds(520,475,200,150);
+
+  food7.setBounds(80,700,200,150);
+  food8.setBounds(300,700,200,150);
+  food9.setBounds(540,700,200,150);
+
   food1.setFont(defaultFont);
   food2.setFont(defaultFont);
   food3.setFont(defaultFont);
-  mainEntree.setFont(headerFont);
 
-  //Adding action listeners placeOrder, makePayment, callAssistance, and entertainment
-  orangeChicken.addActionListener(this);
-  mangoChicken.addActionListener(this);
-  sesameChicken.addActionListener(this);
+  food4.setFont(defaultFont);
+  food5.setFont(defaultFont);
+  food6.setFont(defaultFont);
+
+  food7.setFont(defaultFont);
+  food8.setFont(defaultFont);
+  food9.setFont(defaultFont);
+
+  mainEntree.setFont(headerFont);
 
   //Adding items to the foodPane
   foodPane.add(mainEntree);
   foodPane.add(food1);
   foodPane.add(food2);
   foodPane.add(food3);
+  foodPane.add(food4);
+  foodPane.add(food5);
+  foodPane.add(food6);
+  foodPane.add(food7);
+  foodPane.add(food8);
+  foodPane.add(food9);
   foodPane.add(orangeChicken);
   foodPane.add(mangoChicken);
   foodPane.add(sesameChicken);
-
+  foodPane.add(grilledSalmon);
+  foodPane.add(grilledChicken);
+  foodPane.add(chickenWings);
+  foodPane.add(spaghetti);
+  foodPane.add(lasagna);
+  foodPane.add(ravioli);
+  //Adding action listeners placeOrder, makePayment, callAssistance, and entertainment
+  orangeChicken.addActionListener(this);
+  mangoChicken.addActionListener(this);
+  sesameChicken.addActionListener(this);
+  grilledSalmon.addActionListener(this);
+  grilledChicken.addActionListener(this);
+  chickenWings.addActionListener(this);
+  spaghetti.addActionListener(this);
+  lasagna.addActionListener(this);
+  ravioli.addActionListener(this);
   return foodPane;
 }
 
@@ -462,13 +555,137 @@ public JPanel billPane(BigDecimal _bd)
   JPanel billPane  = new JPanel();
   billPane.setLayout(null);
   Font headerFont  = new Font("Cambria", Font.BOLD, 30);
+  Font defaultFont = new Font("Cambria", Font.BOLD, 12);
   //Setting the fonts and location of the menu headers
   JLabel invoice = new JLabel("Total: " + _bd);
+  JLabel itemCol = new JLabel("Item(s)");
+  JLabel qtyCol  = new JLabel("Quantity");
   invoice.setBounds(50,5,200,150);
+  itemCol.setBounds(300,40,200,150);
+  qtyCol.setBounds(450,40,200,150);
   invoice.setFont(headerFont);
+  itemCol.setFont(defaultFont);
+  qtyCol.setFont(defaultFont);
+  ImageIcon back_Icon = new ImageIcon("icons/back.gif");
+  back = new JButton(back_Icon);
+  back.setBounds(120,450,100,43);
+
+
+  // create object of table and table model
+  JTable tbl = new JTable();
+  String[] header = new String[] {"Item(s)", "Quantity"};
+  DefaultTableModel dtm = new DefaultTableModel(0, 0);
+  // add header in table model
+  dtm.setColumnIdentifiers(header);
+  //set model into the table object
+  tbl.setModel(dtm);
+
+    int tmp = 0;
+    for (int count = 0; count < 6; count++)
+    {
+      tmp = Integer.parseInt(foodArray[1][count]);
+      if(tmp != 0)
+       dtm.addRow(new Object[] {foodArray[0][count], foodArray[1][count] });
+    }
+    for(int count2 = 0; count2 < 9; count2++)
+    {
+      tmp = Integer.parseInt(drinkArray[1][count2]);
+      if(tmp != 0)
+        dtm.addRow(new Object[] {drinkArray[0][count2], drinkArray[1][count2]});
+    }
+    for(int count3 = 0; count3 < 6; count3++)
+    {
+      tmp = Integer.parseInt(appetizerArray[1][count3]);
+      if(tmp != 0)
+        dtm.addRow(new Object[] {appetizerArray[0][count3],appetizerArray[1][count3]});
+    }
+
+  /*DefaultTableModel model = new DefaultTableModel(new String[][]
+  {
+      { "Chicken", "1" }, { "Coke", "2" } }, new String[] { "Item(s)", "Quantity" });
+  JTable table = new JTable(model);*/
+  //table.setBounds(250,130,300,250);
+  tbl.setBounds(250,130,300,250);
+  billPane.add(tbl);
+  //billPane.add(table);
   billPane.add(invoice);
+  billPane.add(back);
+  billPane.add(itemCol);
+  billPane.add(qtyCol);
+  //billPane.add(confirm);
+  back.addActionListener(this);
+  //confirm.addActionListener(this);
   return billPane;
 }
+
+/*
+*        METHODS FOR UPDATING THE ARRAY
+*        VALUES OF FOOD,DRINK,DESSERT,
+*        APPETIZER, ETC
+*/
+public void updateFoodArray(Object source)
+{
+  if(source == orangeChicken)
+    foodArray[1][0] = incrString(foodArray[1][0]);
+  else if(source == mangoChicken)
+    foodArray[1][1] = incrString(foodArray[1][1]);
+  else if(source == sesameChicken)
+    foodArray[1][2] = incrString(foodArray[1][2]);
+}
+
+public void updateDrinkArray(Object source)
+{
+    if( source == coke)
+        drinkArray[1][0] = incrString(drinkArray[1][0]);
+    else if( source == pepsi)
+        drinkArray[1][1] = incrString(drinkArray[1][1]);
+    else if( source == sprite)
+        drinkArray[1][2] = incrString(drinkArray[1][2]);
+    else if( source == orangeJuice)
+        drinkArray[1][3] = incrString(drinkArray[1][3]);
+    else if( source == grapeJuice)
+        drinkArray[1][4] = incrString(drinkArray[1][4]);
+    else if( source == appleJuice)
+        drinkArray[1][5] = incrString(drinkArray[1][5]);
+    else if( source == chocMilk)
+        drinkArray[1][6] = incrString(drinkArray[1][6]);
+    else if(source == vanMilk)
+        drinkArray[1][7] = incrString(drinkArray[1][7]);
+    else if( source == strawMilk)
+        drinkArray[1][8] = incrString(drinkArray[1][8]);
+}
+
+public void updateAppetizerArray(Object source)
+{
+  if( source == caesarSalad){
+      appetizerArray[1][0] = incrString(appetizerArray[1][0]);
+      total = total.add(new BigDecimal("1.50"));
+    }
+  else if( source == fruitSalad){
+      appetizerArray[1][1] = incrString(appetizerArray[1][1]);
+      total = total.add(new BigDecimal("1.00"));
+    }
+  else if( source == vegetableSalad){
+      appetizerArray[1][2] = incrString(appetizerArray[1][2]);
+      total = total.add(new BigDecimal("1.50"));
+    }
+  else if( source == frenchFries)
+      appetizerArray[1][3] = incrString(appetizerArray[1][3]);
+  else if( source == mozzarellaSticks)
+      appetizerArray[1][4] = incrString(appetizerArray[1][4]);
+  else if( source == onionRings)
+      appetizerArray[1][5] = incrString(appetizerArray[1][5]);
+}
+public String incrString(String str)
+{
+  int tmp = 0;
+  String strTmp;
+  tmp = Integer.parseInt(str);
+  tmp+=1;
+  strTmp = String.valueOf(tmp);
+  return strTmp;
+}
+
 
   @Override
   public void actionPerformed(ActionEvent e)
@@ -477,21 +694,48 @@ public JPanel billPane(BigDecimal _bd)
 
     BigDecimal _ch  = new BigDecimal("8.75");
     BigDecimal _sd  = new BigDecimal("1.99");
-    BigDecimal _ms  = new BigDecimal("2.10");
+    BigDecimal _ju  = new BigDecimal("2.10");
+    BigDecimal _ms  = new BigDecimal("3.39");
     BigDecimal _ic  = new BigDecimal("2.25");
 
     if (source == orangeChicken || source == mangoChicken || source == sesameChicken)
+    {
       total = total.add(_ch);
+      updateFoodArray(source);
+    }
     else if( source == coke || source == pepsi || source == sprite)
+    {
       total = total.add(_sd);
+      updateDrinkArray(source);
+    }
     else if(source == orangeJuice || source == grapeJuice || source == appleJuice)
+    {
+      total = total.add(_ju);
+      updateDrinkArray(source);
+    }
+    else if(source == chocMilk || source == vanMilk || source == strawMilk)
+    {
       total = total.add(_ms);
+      updateDrinkArray(source);
+    }
     else if(source == chocIceCream || source == vanIceCream || source == strawIceCream)
+    {
       total = total.add(_ic);
+    }
+    else if(source == caesarSalad || source == fruitSalad || source == vegetableSalad ||
+            source == frenchFries || source == mozzarellaSticks || source == onionRings)
+            {
+              updateAppetizerArray(source);
+            }
+    else if(source == back)
+    {
+      setVisible(false);
+      CustomerTableScreen cts = new CustomerTableScreen(tableID);
+    }
 
+    //Update the billPane with the new values
     JPanel newBillPane = billPane(total);
     tabPane.setComponentAt(4,newBillPane);
-    System.out.print("Total: " + total + "\n");
   }
 
 

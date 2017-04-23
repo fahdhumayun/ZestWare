@@ -3,6 +3,14 @@ Image References:
 orange Chicken Image: http://www.kitchme.com/recipes/panda-express-orange-chicken-copycat
 Mango Chicken Image: http://steamykitchen.com/607-easy-pan-fried-mango-curry-chicken.html
 Sesame Chicken Image: http://www.browneyedbaker.com/sesame-chicken-recipe/
+
+grilled salmon: http://www.olivegarden.com/menu/herb-grilled-salmon/prod80079
+grilled chicken: http://skipthepie.org/fast-foods/fast-foods-chicken-breaded-and-fried-boneless-pieces-plain/
+grilled chicken wings: http://www.myrecipes.com/recipe/fried-chicken-wings
+
+spaghetti:http://cookdiary.net/spaghetti-with-meatballs/
+lasagna: https://www.barilla.com/en-us/products/pasta/classic-blue-box/oven-ready-lasagna
+ravioli: http://www.josephsgourmetpasta.com/our-products
 -------------------------------------------------------------------------------
 -------------------------------------DRINKS-------------------------------------
 coke:  http://www.eatthis.com/dangers-and-side-effects-of-drinking-coke
