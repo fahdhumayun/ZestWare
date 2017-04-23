@@ -631,30 +631,53 @@ public void updateFoodArray(Object source)
     foodArray[1][1] = incrString(foodArray[1][1]);
   else if(source == sesameChicken)
     foodArray[1][2] = incrString(foodArray[1][2]);
+  else if(source == grilledSalmon){
+    foodArray[1][3] = incrString(foodArray[1][3]);
+    total = total.add(new BigDecimal("8.25"));
+  }
+  else if(source == grilledChicken){
+    foodArray[1][4] = incrString(foodArray[1][4]);
+    total = total.add(new BigDecimal("7.75"));
+  }
+  else if(source == chickenWings){
+    foodArray[1][5] = incrString(foodArray[1][5]);
+    total = total.add(new BigDecimal("7.75"));
+  }
+  else if(source == spaghetti){
+    foodArray[1][6] = incrString(foodArray[1][6]);
+    total = total.add(new BigDecimal("5.95"));
+  }
+  else if(source == lasagna){
+    foodArray[1][7] = incrString(foodArray[1][7]);
+    total = total.add(new BigDecimal("6.75"));
+  }
+  else if(source == ravioli){
+    foodArray[1][8] = incrString(foodArray[1][8]);
+    total = total.add(new BigDecimal("6.25"));
+  }
 }
 
 public void updateDrinkArray(Object source)
 {
-    if( source == coke)
-        drinkArray[1][0] = incrString(drinkArray[1][0]);
-    else if( source == pepsi)
-        drinkArray[1][1] = incrString(drinkArray[1][1]);
-    else if( source == sprite)
-        drinkArray[1][2] = incrString(drinkArray[1][2]);
-    else if( source == orangeJuice)
-        drinkArray[1][3] = incrString(drinkArray[1][3]);
-    else if( source == grapeJuice)
-        drinkArray[1][4] = incrString(drinkArray[1][4]);
-    else if( source == appleJuice)
-        drinkArray[1][5] = incrString(drinkArray[1][5]);
-    else if( source == chocMilk)
-        drinkArray[1][6] = incrString(drinkArray[1][6]);
-    else if(source == vanMilk)
-        drinkArray[1][7] = incrString(drinkArray[1][7]);
-    else if( source == strawMilk)
-        drinkArray[1][8] = incrString(drinkArray[1][8]);
+  if( source == coke)
+      drinkArray[1][0] = incrString(drinkArray[1][0]);
+  else if( source == pepsi)
+      drinkArray[1][1] = incrString(drinkArray[1][1]);
+  else if( source == sprite)
+      drinkArray[1][2] = incrString(drinkArray[1][2]);
+  else if( source == orangeJuice)
+      drinkArray[1][3] = incrString(drinkArray[1][3]);
+  else if( source == grapeJuice)
+      drinkArray[1][4] = incrString(drinkArray[1][4]);
+  else if( source == appleJuice)
+      drinkArray[1][5] = incrString(drinkArray[1][5]);
+  else if( source == chocMilk)
+      drinkArray[1][6] = incrString(drinkArray[1][6]);
+  else if( source == vanMilk)
+      drinkArray[1][7] = incrString(drinkArray[1][7]);
+  else if( source == strawMilk)
+      drinkArray[1][8] = incrString(drinkArray[1][8]);
 }
-
 public void updateAppetizerArray(Object source)
 {
   if( source == caesarSalad){
@@ -676,6 +699,35 @@ public void updateAppetizerArray(Object source)
   else if( source == onionRings)
       appetizerArray[1][5] = incrString(appetizerArray[1][5]);
 }
+
+public void updateDessertArray(Object source)
+{
+  BigDecimal _rc = new BigDecimal("6.75");
+  BigDecimal _ch = new BigDecimal("6.25");
+  BigDecimal _cc = new BigDecimal("6.09");
+
+  if( source == chocIceCream)
+    dessertArray[1][0] = incrString(dessertArray[1][0]);
+  else if( source == vanIceCream)
+    dessertArray[1][1] = incrString(dessertArray[1][1]);
+  else if( source == strawIceCream)
+    dessertArray[1][2] = incrString(dessertArray[1][2]);
+  else if( source == redCake)
+  {
+    dessertArray[1][3] = incrString(dessertArray[1][3]);
+    total = total.add(_rc);
+  }
+  else if( source == cheeseCake)
+  {
+    dessertArray[1][4] = incrString(dessertArray[1][4]);
+    total = total.add(_ch);
+  }
+  else if( source == carrotCake)
+  {
+      dessertArray[1][5] = incrString(dessertArray[1][5]);
+      total = total.add(_cc);
+  }
+}
 public String incrString(String str)
 {
   int tmp = 0;
@@ -685,6 +737,7 @@ public String incrString(String str)
   strTmp = String.valueOf(tmp);
   return strTmp;
 }
+
 
 
   @Override
@@ -703,6 +756,11 @@ public String incrString(String str)
       total = total.add(_ch);
       updateFoodArray(source);
     }
+    if(source == grilledSalmon || source == grilledChicken || source == chickenWings ||
+       source == spaghetti || source == lasagna || source == ravioli)
+       {
+         updateFoodArray(source);
+       }
     else if( source == coke || source == pepsi || source == sprite)
     {
       total = total.add(_sd);
@@ -721,7 +779,10 @@ public String incrString(String str)
     else if(source == chocIceCream || source == vanIceCream || source == strawIceCream)
     {
       total = total.add(_ic);
+      updateDessertArray(source);
     }
+    else if(source == redCake || source == cheeseCake || source == carrotCake)
+      updateDessertArray(source);
     else if(source == caesarSalad || source == fruitSalad || source == vegetableSalad ||
             source == frenchFries || source == mozzarellaSticks || source == onionRings)
             {
