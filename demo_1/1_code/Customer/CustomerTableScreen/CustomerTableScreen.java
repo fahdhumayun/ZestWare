@@ -89,7 +89,12 @@ public class CustomerTableScreen extends JFrame implements ActionListener {
     }
     if ( source == entertainment){
       setVisible(false);
+<<<<<<< HEAD
       UnderConstruction un = new UnderConstruction(tableID);
+=======
+      UnderConstruction uc = new UnderConstruction(tableID);
+      //Entertainment e = new Entertainment(tableID);
+>>>>>>> refs/remotes/origin/master
     }
   }
 
