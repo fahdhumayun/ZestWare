@@ -40,7 +40,7 @@ public class BitcoinPayment extends JFrame implements ActionListener {
     //Will be updated to generate QR Based on the customer menu choices
     //using either Blockchain.info API or a Custom Built class to generate scannable QR codes
     ImageIcon bitcoin_Icon  = new ImageIcon("icons/tempQR.gif");
-    ImageIcon back_Icon  = new ImageIcon("icons/back.gif");
+    ImageIcon back_Icon     = new ImageIcon("icons/back.gif");
 
     bitcoinQR = new JButton(bitcoin_Icon);
     back      = new JButton(back_Icon);

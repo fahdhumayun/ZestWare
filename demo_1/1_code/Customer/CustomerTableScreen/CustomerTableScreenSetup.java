@@ -11,7 +11,7 @@ import java.util.*;
 public class CustomerTableScreenSetup extends JFrame implements ActionListener {
 
   //****************************************************************
-  //******************* CUSTOMER TABLE SCREEN(Setup) **********************
+  //******************* CUSTOMER TABLE SCREEN(Setup) ***************
   //****************************************************************
   JComboBox sizeBox = new JComboBox();
   JButton next;
@@ -103,7 +103,7 @@ public class CustomerTableScreenSetup extends JFrame implements ActionListener {
   }
 
 public static void main(String[] args){
-  //Call the CustomerTableScreen Setup 
+  //Call the CustomerTableScreen Setup
   CustomerTableScreenSetup cts = new CustomerTableScreenSetup();
 
 }

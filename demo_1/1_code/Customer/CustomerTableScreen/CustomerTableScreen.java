@@ -76,7 +76,8 @@ public class CustomerTableScreen extends JFrame implements ActionListener {
 
     if (source == placeOrder) {
       setVisible(false);
-      PlaceOrder po = new PlaceOrder(tableID);
+      TestScroll ts = new TestScroll(tableID);
+      //PlaceOrder po = new PlaceOrder(tableID);
     }
     if ( source == makePayment){
       setVisible(false);
@@ -87,9 +88,15 @@ public class CustomerTableScreen extends JFrame implements ActionListener {
       CallAssistance ca = new CallAssistance(tableID);
     }
     if ( source == entertainment){
-      //setVisible(false);
-      //Entertainment e = new Entertainment(tableID);
+      setVisible(false);
+      UnderConstruction un = new UnderConstruction(tableID);
     }
+  }
+
+  public static void main(String[] args){
+    //Call the CustomerTableScreen Setup
+    CustomerTableScreen cts = new CustomerTableScreen(1);
+
   }
 
 } //end class CustomerTableScreen

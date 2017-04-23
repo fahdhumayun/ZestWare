@@ -3,15 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.math.*;
-import java.lang.*;
 
 public class PlaceOrder extends JFrame implements ActionListener
 {
-  JPanel billPane;
-  JTabbedPane tabPane;
-
   BigDecimal total = new BigDecimal("0.00");
-  //JBUttons for the food pane including meats,
+  //JBUttons for the food pane
   JButton mangoChicken;
   JButton orangeChicken;
   JButton sesameChicken;
@@ -19,14 +15,6 @@ public class PlaceOrder extends JFrame implements ActionListener
   JButton coke;   JButton strawMilk; JButton orangeJuice;
   JButton pepsi;  JButton chocMilk;  JButton grapeJuice;
   JButton sprite; JButton vanMilk;   JButton appleJuice;
-  //JButtons for the appetizer pane including
-  JButton caesarSalad;    JButton frenchFries;
-  JButton fruitSalad;     JButton mozzarellaSticks;
-  JButton vegetableSalad; JButton onionRings;
-  //JButtons for the dessert pane including ice cream, and cakes
-  JButton chocIceCream;   JButton redCake;
-  JButton vanIceCream;    JButton cheeseCake;
-  JButton strawIceCream;  JButton carrotCake;
 
   int tableID;
 
@@ -34,13 +22,13 @@ public class PlaceOrder extends JFrame implements ActionListener
   {
     super("Place Order Pane");
     tableID = table_id;
-    tabPane  = new JTabbedPane();
+    JTabbedPane tabPane  = new JTabbedPane();
     //Create new jpanels for food, drink, appetizers, desserts, and bill
     JPanel foodPane      = foodPane();
     JPanel drinkPane     = drinkPane();
     JPanel appetizerPane = appetizerPane();
     JPanel dessertPane   = dessertPane();
-    JPanel billPane      = billPane(total);
+    JPanel billPane      = billPane();
 
 
     //Set up JScrollPane for scrolling ability in the food Pane
@@ -164,7 +152,7 @@ public JPanel drinkPane()
   ImageIcon chocMilk_Icon  = new ImageIcon("menuImages/drink/chocMilk.jpg");
   ImageIcon vanMilk_Icon   = new ImageIcon("menuImages/drink/vanillaShake.jpg");
   ImageIcon strawMilk_Icon = new ImageIcon("menuImages/drink/strawMilk.jpg");
-
+  //Setting up the image postions with setBounds() for food panel
   //Soft Drink Icons
   coke   = new JButton(coke_Icon);
   pepsi   = new JButton(pepsi_Icon);
@@ -177,7 +165,7 @@ public JPanel drinkPane()
   chocMilk = new JButton(chocMilk_Icon);
   vanMilk  = new JButton(vanMilk_Icon);
   strawMilk = new JButton(strawMilk_Icon);
-  //Setting up the image postions with setBounds() for food panel
+
   coke.setBounds(50,150,200,150);
   pepsi.setBounds(275,150,200,150);
   sprite.setBounds(500,150,200,150);
@@ -201,7 +189,7 @@ public JPanel drinkPane()
   sodaHeader.setBounds(300,5,200,150);
   juiceHeader.setBounds(330,300,200,150);
   milkHeader.setBounds(300,595,200,150);
-  //Setting the JLabels for each of the food panel items
+  //Setting Fonts and location of the menu items
   JLabel drink1 = new JLabel("Coke....$1.99");
   JLabel drink2 = new JLabel("Pepsi....$1.99");
   JLabel drink3 = new JLabel("Sprite....$1.99");
@@ -213,7 +201,7 @@ public JPanel drinkPane()
   JLabel drink7 = new JLabel("Chocolate Shake....$3.39");
   JLabel drink8 = new JLabel("Vanilla Shake....$3.39");
   JLabel drink9 = new JLabel("Strawberry Shake....$3.39");
-  //Setting the location of the food panel items
+  //Setting the font and location of the food panel items
   drink1.setBounds(95,250,200,150);
   drink2.setBounds(320,250,200,150);
   drink3.setBounds(540,250,200,150);
@@ -225,7 +213,7 @@ public JPanel drinkPane()
   drink7.setBounds(50,800,200,150);
   drink8.setBounds(280,800,200,150);
   drink9.setBounds(520,800,200,150);
-  //Setting the fonts of the drink pane items
+
   drink1.setFont(defaultFont);
   drink2.setFont(defaultFont);
   drink3.setFont(defaultFont);
@@ -286,86 +274,10 @@ public JPanel appetizerPane()
   JPanel appetizerPane = new JPanel();
   appetizerPane.setLayout(null);
   appetizerPane.setPreferredSize(new Dimension(800,1500));
-  //Image Icon setup for Appetizer Items
-  ImageIcon caesarSalad_Icon = new ImageIcon("menuImages/appetizer/caesarSalad.jpg");
-  ImageIcon fruitSalad_Icon  = new ImageIcon("menuImages/appetizer/fruitSalad.jpg");
-  ImageIcon vegetableSalad_Icon = new ImageIcon("menuImages/appetizer/vegetableSalad.jpg");
 
-  ImageIcon frenchFries_Icon      = new ImageIcon("menuImages/appetizer/frenchFries.jpg");
-  ImageIcon mozzarellaSticks_Icon = new ImageIcon("menuImages/appetizer/mozzarellaSticks.jpg");
-  ImageIcon onionRings_Icon       = new ImageIcon("menuImages/appetizer/onionRing.jpg");
-
-  //Salad Icons
-  caesarSalad      = new JButton(caesarSalad_Icon);
-  fruitSalad       = new JButton(fruitSalad_Icon);
-  vegetableSalad   = new JButton(vegetableSalad_Icon);
-
-  frenchFries      = new JButton(frenchFries_Icon);
-  mozzarellaSticks = new JButton(mozzarellaSticks_Icon);
-  onionRings       = new JButton(onionRings_Icon);
-  //Setting up the image postions with setBounds() for food panel
-  caesarSalad.setBounds(50,150,200,150);
-  fruitSalad.setBounds(275,150,200,150);
-  vegetableSalad.setBounds(500,150,200,150);
-
-  frenchFries.setBounds(50,425,200,150);
-  mozzarellaSticks.setBounds(270,425,200,150);
-  onionRings.setBounds(500,425,200,150);
   //Setting up the fonts to be used in the panels
   Font defaultFont = new Font("Cambria", Font.BOLD, 12);
   Font headerFont  = new Font("Cambria", Font.BOLD, 30);
-  //Setting the fonts and location of the menu headers
-  JLabel saladHeader = new JLabel("Salads");
-  JLabel snackHeader = new JLabel("Snacks");
-  //Setting the location of the headers
-  saladHeader.setBounds(300,5,200,150);
-  snackHeader.setBounds(330,300,200,150);
-  //Setting the JLabels for each of the food panel items
-  JLabel appetizer1 = new JLabel("Caesar Salad....$1.50");
-  JLabel appetizer2 = new JLabel("Fruit Salad....$1.00");
-  JLabel appetizer3 = new JLabel("Vegetable Salad....$1.50");
-
-  JLabel appetizer4 = new JLabel("French Fries....$2.19");
-  JLabel appetizer5 = new JLabel("Mozzarella Sticks....$2.75");
-  JLabel appetizer6 = new JLabel("Onion Rings....$2.19");
-  //Setting the font and location of the food panel items
-  appetizer1.setBounds(80,250,200,150);
-  appetizer2.setBounds(300,250,200,150);
-  appetizer3.setBounds(520,250,200,150);
-
-  appetizer4.setBounds(75,525,200,150);
-  appetizer5.setBounds(300,525,200,150);
-  appetizer6.setBounds(520,525,200,150);
-
-  appetizer1.setFont(defaultFont);
-  appetizer2.setFont(defaultFont);
-  appetizer3.setFont(defaultFont);
-  saladHeader.setFont(headerFont);
-  snackHeader.setFont(headerFont);
-  //adding the items to the appetizer pane
-  appetizerPane.add(saladHeader);
-  appetizerPane.add(snackHeader);
-  appetizerPane.add(appetizer1);
-  appetizerPane.add(appetizer2);
-  appetizerPane.add(appetizer3);
-  appetizerPane.add(appetizer4);
-  appetizerPane.add(appetizer5);
-  appetizerPane.add(appetizer6);
-  appetizerPane.add(caesarSalad);
-  appetizerPane.add(fruitSalad);
-  appetizerPane.add(vegetableSalad);
-  appetizerPane.add(frenchFries);
-  appetizerPane.add(mozzarellaSticks);
-  appetizerPane.add(onionRings);
-
-  //Adding action listeners for each of the appetizer buttons
-  caesarSalad.addActionListener(this);
-  fruitSalad.addActionListener(this);
-  vegetableSalad.addActionListener(this);
-  frenchFries.addActionListener(this);
-  mozzarellaSticks.addActionListener(this);
-  onionRings.addActionListener(this);
-
 
   return appetizerPane;
 }
@@ -374,99 +286,19 @@ public JPanel dessertPane()
 {
   JPanel dessertPane   = new JPanel();
   dessertPane.setLayout(null);
-  //Setting the preferred dimension sizes of the JPanel
   dessertPane.setPreferredSize(new Dimension(800,1500));
-  //Image Icon setup for Dessert Items
-  ImageIcon chocIce_Icon   = new ImageIcon("menuImages/dessert/chocIceCream.jpg");
-  ImageIcon vanIce_Icon  = new ImageIcon("menuImages/dessert/vanIceCream.jpg");
-  ImageIcon strawIce_Icon = new ImageIcon("menuImages/dessert/strawIceCream.jpg");
 
-  ImageIcon redCake_Icon = new ImageIcon("menuImages/dessert/redVelvetCake.jpg");
-  ImageIcon cheeseCake_Icon = new ImageIcon("menuImages/dessert/cheeseCake.jpg");
-  ImageIcon carrotCake_Icon = new ImageIcon("menuImages/dessert/carrotCake.jpg");
-  //Initializing dessert items
-  chocIceCream  = new JButton(chocIce_Icon);
-  vanIceCream   = new JButton(vanIce_Icon);
-  strawIceCream = new JButton(strawIce_Icon);
-
-  redCake = new JButton(redCake_Icon);
-  cheeseCake = new JButton(cheeseCake_Icon);
-  carrotCake = new JButton(carrotCake_Icon);
-  //Setting the position of the dessert pane items
-  chocIceCream.setBounds(50,150,200,150);
-  vanIceCream.setBounds(275,150,200,150);
-  strawIceCream.setBounds(500,150,200,150);
-
-  redCake.setBounds(50,425,200,150);
-  cheeseCake.setBounds(275,425,200,150);
-  carrotCake.setBounds(500,425,200,150);
   //Setting up the fonts to be used in the panels
   Font defaultFont = new Font("Cambria", Font.BOLD, 12);
   Font headerFont  = new Font("Cambria", Font.BOLD, 30);
-  //Setting the fonts and location of the menu headers
-  JLabel iceCreamHeader = new JLabel("Ice Cream");
-  JLabel cakeHeader     = new JLabel("Cakes");
-  iceCreamHeader.setBounds(300,5,200,150);
-  cakeHeader.setBounds(320,300,200,150);
-  //Setting Fonts and location of the menu items
-  JLabel dessert1 = new JLabel("Chocolate Ice Cream....$2.25");
-  JLabel dessert2 = new JLabel("Vanilla Ice Cream....$2.25");
-  JLabel dessert3 = new JLabel("Strawberry Ice Cream....$2.25");
-  JLabel dessert4 = new JLabel("Red Velvet Cake....$6.75");
-  JLabel dessert5 = new JLabel("Cheese Cake....$6.25");
-  JLabel dessert6 = new JLabel("Carrot Cake....$6.09");
-  //Setting the font and location of the dessert panel items
-  dessert1.setBounds(80,250,200,150);
-  dessert2.setBounds(300,250,200,150);
-  dessert3.setBounds(520,250,200,150);
-  dessert4.setBounds(80,525,200,150);
-  dessert5.setBounds(300,525,200,150);
-  dessert6.setBounds(520,525,200,150);
-  //Setting the fonts of the dessert panel items
-  dessert1.setFont(defaultFont);
-  dessert2.setFont(defaultFont);
-  dessert3.setFont(defaultFont);
-  dessert4.setFont(defaultFont);
-  dessert5.setFont(defaultFont);
-  dessert6.setFont(defaultFont);
-  iceCreamHeader.setFont(headerFont);
-  cakeHeader.setFont(headerFont);
-  //Adding items to the foodPane
-  dessertPane.add(iceCreamHeader);
-  dessertPane.add(cakeHeader);
-  dessertPane.add(dessert1);
-  dessertPane.add(dessert2);
-  dessertPane.add(dessert3);
-  dessertPane.add(dessert4);
-  dessertPane.add(dessert5);
-  dessertPane.add(dessert6);
-  dessertPane.add(chocIceCream);
-  dessertPane.add(vanIceCream);
-  dessertPane.add(strawIceCream);
-  dessertPane.add(redCake);
-  dessertPane.add(cheeseCake);
-  dessertPane.add(carrotCake);
-  //Adding action listeners
-  chocIceCream.addActionListener(this);
-  vanIceCream.addActionListener(this);
-  strawIceCream.addActionListener(this);
-  redCake.addActionListener(this);
-  cheeseCake.addActionListener(this);
-  carrotCake.addActionListener(this);
 
   return dessertPane;
 }
 
-public JPanel billPane(BigDecimal _bd)
+public JPanel billPane()
 {
   JPanel billPane  = new JPanel();
   billPane.setLayout(null);
-  Font headerFont  = new Font("Cambria", Font.BOLD, 30);
-  //Setting the fonts and location of the menu headers
-  JLabel invoice = new JLabel("Total: " + _bd);
-  invoice.setBounds(50,5,200,150);
-  invoice.setFont(headerFont);
-  billPane.add(invoice);
   return billPane;
 }
 
@@ -476,21 +308,19 @@ public JPanel billPane(BigDecimal _bd)
     Object source = e.getSource();
 
     BigDecimal _ch  = new BigDecimal("8.75");
+    System.out.println("_ch:" + _ch);
     BigDecimal _sd  = new BigDecimal("1.99");
+    System.out.println("_sd:" + _sd);
     BigDecimal _ms  = new BigDecimal("2.10");
-    BigDecimal _ic  = new BigDecimal("2.25");
+    System.out.println("_ms:" + _ms);
 
     if (source == orangeChicken || source == mangoChicken || source == sesameChicken)
       total = total.add(_ch);
-    else if( source == coke || source == pepsi || source == sprite)
+    if( source == coke || source == pepsi || source == sprite)
       total = total.add(_sd);
-    else if(source == orangeJuice || source == grapeJuice || source == appleJuice)
+    if(source == orangeJuice || source == grapeJuice || source == appleJuice)
       total = total.add(_ms);
-    else if(source == chocIceCream || source == vanIceCream || source == strawIceCream)
-      total = total.add(_ic);
 
-    JPanel newBillPane = billPane(total);
-    tabPane.setComponentAt(4,newBillPane);
     System.out.print("Total: " + total + "\n");
   }
 
