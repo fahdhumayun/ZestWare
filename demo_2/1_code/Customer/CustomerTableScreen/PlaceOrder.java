@@ -10,8 +10,8 @@ import javax.swing.JTable;
 public class PlaceOrder extends JFrame implements ActionListener
 {
   JTabbedPane tabPane;
-  JComboBox itemBox = new JComboBox();
-  JComboBox qtyBox =  new JComboBox();
+  //JComboBox itemBox = new JComboBox();
+  //JComboBox qtyBox =  new JComboBox();
   BigDecimal total = new BigDecimal("0.00");
   //JButtons for the billpane
   JButton cancel;
@@ -36,6 +36,8 @@ public class PlaceOrder extends JFrame implements ActionListener
 
   //Other variables needed for the functionality
   int tableID;
+  dbSQLCTS db = new dbSQLCTS();
+
 
   String[][] foodArray = {
     {"Orange Chicken", "Mango Chicken", "Sesame Chicken","Grilled Salmon", "Grilled Chicken",
@@ -82,6 +84,8 @@ public class PlaceOrder extends JFrame implements ActionListener
     JPanel appetizerPane = appetizerPane();
     JPanel dessertPane   = dessertPane();
     JPanel billPane      = billPane(total);
+    //Make database connection
+    db.connectToDB();
 
     //Set up JScrollPane for scrolling ability in the food Pane
     JScrollPane scrollFrame = new JScrollPane(foodPane,
@@ -739,15 +743,12 @@ public JPanel billPane(BigDecimal _bd)
    {
      currentOrder[0][m] = (String)dtm.getValueAt(m,0);
      currentOrder[1][m] = (String)dtm.getValueAt(m,1);
-     System.out.println(currentOrder[0][m] + " " + currentOrder[1][m]);
    }
     //System.out.println((String)dtm.getValueAt(m,0) + " " + (String)dtm.getValueAt(m,1));
    //System.out.println((String)dtm.getValueAt(1,0));
 
   tbl.setBounds(250,130,300,250);
   billPane.add(tbl);
-  billPane.add(itemBox);
-  billPane.add(qtyBox);
   billPane.add(invoice);
   billPane.add(cancel);
   billPane.add(itemCol);
@@ -818,6 +819,7 @@ public void updateFoodArray(Object source)
 
 public void updateDrinkArray(Object source)
 {
+  dbSQLCTS dbs = new dbSQLCTS();
   if( source == coke){
       drinkArray[1][0] = incrString(drinkArray[1][0]);
       total = total.add(new BigDecimal(drinkArray[2][0]));
@@ -959,6 +961,7 @@ public String incrString(String str)
   public void actionPerformed(ActionEvent e)
   {
     Object source = e.getSource();
+    
 
     if(source == grilledSalmon || source == grilledChicken || source == chickenWings ||
        source == spaghetti || source == lasagna || source == ravioli || source == whiteRice ||
@@ -989,19 +992,27 @@ public String incrString(String str)
     {
       setVisible(false);
       CustomerTableScreen cts = new CustomerTableScreen(tableID);
+      db.disconnectFromDB();
     }
-    else if( source == confirm)
-      System.out.println("Fuck you");
+    else if( source == confirm){
+    	String tot = total.toString();
+    	db.setTotalPrice(tableID, tot);
+    	CustomerTableScreen cts = new CustomerTableScreen(tableID);
+    	setVisible(false);
+        db.disconnectFromDB();
+    }
+     
 
     //Update the billPane with the new values
     JPanel newBillPane = billPane(total);
     tabPane.setComponentAt(4,newBillPane);
+   
   }
 
 
-  public static void main(String[] args)
+  /*public static void main(String[] args)
   {
     PlaceOrder ts = new PlaceOrder(1);
-  }
+  }*/
 
 }

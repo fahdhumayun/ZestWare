@@ -38,7 +38,7 @@ public class CustomerTableScreenSetup extends JFrame implements ActionListener {
     Font font1 = new Font("Cambria", Font.BOLD, 20);
     prompt.setFont(font1);
 
-    try {
+    /*try {
       Class.forName("com.mysql.jdbc.Driver");
       // 1. Get a connection to database
       Connection myConn = DriverManager.getConnection("customertablescreen-cluster.cluster-c7ormjiryir8.us-east-2.rds.amazonaws.com:3306", "root", "faheemisfriend");
@@ -55,18 +55,18 @@ public class CustomerTableScreenSetup extends JFrame implements ActionListener {
       while (t_profile.next()) {
         table_number.addElement( t_profile.getInt("tableid") ); //store all of the tables into vector
         //System.out.println(t_profile.getInt("tableid") );
-      }
+      }*/
 
-    int tableSize = table_number.capacity();
+    //int tableSize = table_number.capacity();
 
     //Populate the sizebox witht the tableIDs from the database
-    for(int i = 0; i < tableSize; i++)
-    	sizeBox.addItem(table_number.get(i));
+    for(int i = 1; i <= 10; i++)
+    	sizeBox.addItem(i);
 
     ImageIcon next_Icon  = new ImageIcon("icons/next.gif");
     next = new JButton(next_Icon);
 
-    next.setBounds(520,400,100,43);
+    next.setBounds(520,400,180,70);
     sizeBox.setBounds(500, 180, 50, 30);
     prompt.setBounds(180, 95, 350, 200);
 
@@ -81,9 +81,9 @@ public class CustomerTableScreenSetup extends JFrame implements ActionListener {
     getContentPane().add(pane);
     setSize(800,600);
     setVisible(true);
-    }	catch (Exception e) {
-        e.printStackTrace();
-  }
+    //}	catch (Exception e) {
+    //    e.printStackTrace();
+  //}
 }
 
   //****************************************************************
@@ -105,6 +105,5 @@ public class CustomerTableScreenSetup extends JFrame implements ActionListener {
 public static void main(String[] args){
   //Call the CustomerTableScreen Setup
   CustomerTableScreenSetup cts = new CustomerTableScreenSetup();
-
 }
 } //end class CustomerTableScreen

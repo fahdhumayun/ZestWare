@@ -1,6 +1,17 @@
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
+import java.lang.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
 
 //Coded by: Nathan Morgenstern
 //Tested by: --------------
@@ -15,67 +26,112 @@ public class BitcoinPayment extends JFrame implements ActionListener {
   //Create the buttons of the Place Order Screen
   JButton bitcoinQR;
   JButton back;
+  JButton confirm;
   int tableID;
+  dbSQLCTS db = new dbSQLCTS();
 
-  public BitcoinPayment(int table_id){
-    super("Bitcoin Payment (CTS)");
-    tableID = table_id;
-
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    JPanel pane = new JPanel();
-    pane.setLayout(null);
-
-    //Setting the Title and location
-    JLabel title = new JLabel("Bitcoin Payment (CTS)");
-    JLabel tableNumber = new JLabel("Table # " + tableID);
-    title.setBounds(250,10,400,100);
-    tableNumber.setBounds(500,450,300,43);
-
-    Font font = new Font("Cambria", Font.BOLD, 30);
-    Font font2 = new Font("Cambria", Font.BOLD, 20);
-    title.setFont(font);
-    tableNumber.setFont(font2);
-
-    //Import the image icons for the buttons
-    //Will be updated to generate QR Based on the customer menu choices
-    //using either Blockchain.info API or a Custom Built class to generate scannable QR codes
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-      // 1. Get a connection to database
-      Connection myConn = DriverManager.getConnection("ctsdb-cluster.cluster-c7ormjiryir8.us-east-2.rds.amazonaws.com:3306", "root", "12345678");
-      // 2. Create a statement
-      Statement myStmt = myConn.createStatement();
-      // 3. Execute SQL query
-      ResultSet btc_address;
-
-      t_profile = myStmt.executeQuery("select * from tables");
-    }catch (Exception e) {
-        e.printStackTrace();
-      }
-    downloadImage()
-
-    ImageIcon bitcoin_Icon  = new ImageIcon("icons/addr.gif");
-    ImageIcon back_Icon     = new ImageIcon("icons/back.gif");
-
-    bitcoinQR = new JButton(bitcoin_Icon);
-    back      = new JButton(back_Icon);
-
-    bitcoinQR.setBounds(250,100,304,330);
-    back.setBounds(120,450,100,43);
-
-    pane.add(title);
-    pane.add(bitcoinQR);
-    pane.add(back);
-    pane.add(tableNumber);
-
-
-    //Adding action listeners card, cash, bitcoin, and back buttons
-    back.addActionListener(this);
-
-    getContentPane().add(pane);
-    setSize(800,600);
-    setVisible(true);
+  public BitcoinPayment(int table_id)
+  {
+	super("Bitcoin Payment (CTS)");
+	tableID = table_id;
+	db.connectToDB();
+    JPanel payPane = needsPayment(tableID);
+      
     }
+
+ 
+    
+  public JPanel needsPayment(int table_id){
+
+	  tableID = table_id;
+	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  JPanel pane = new JPanel();
+	  pane.setLayout(null);
+
+	  //Setting the Title and location
+	  JLabel title = new JLabel("Bitcoin Payment (CTS)");
+	  JLabel tableNumber = new JLabel("Table # " + tableID);
+	  JLabel btcLabel = new JLabel(new ImageIcon("icons/btc.png"));
+	    
+	  title.setBounds(210,10,400,100);
+	  tableNumber.setBounds(520,480,300,43);
+	  btcLabel.setBounds(300,375,25,25);
+
+	  Font font = new Font("Cambria", Font.BOLD, 30);
+	  Font font2 = new Font("Cambria", Font.BOLD, 20);
+	  title.setFont(font);
+	  tableNumber.setFont(font2);
+	    
+
+	  //Import the image icons for the buttons
+	  //Will be updated to generate QR Based on the customer menu choices
+	  //using either Blockchain.info API or a Custom Built class to generate scannable QR codes
+
+	  String address = db.getBTCAddress(tableID);
+	  String total   = db.getTotalPrice(tableID);
+	  //System.out.println(address);
+	  downloadImage(address);
+	    
+	  Font btcFont = new Font("Cambria", Font.BOLD,20);
+	  JLabel btcPrice = new JLabel(getBTCPrice(total));
+	  btcPrice.setBounds(328,365,150,50); 
+	  btcPrice.setFont(btcFont);
+
+	    //btcLabel.setBounds(300,375,25,25);
+	    
+	    ImageIcon bitcoin_Icon  = new ImageIcon("icons/addr.jpg");
+	    ImageIcon back_Icon     = new ImageIcon("icons/back.gif");
+	    ImageIcon confirm_Icon  = new ImageIcon("icons/confirm.gif");
+	    
+	    bitcoinQR = new JButton(bitcoin_Icon);
+	    back      = new JButton(back_Icon);
+	    confirm   = new JButton(confirm_Icon);
+
+	    bitcoinQR.setBounds(250,100,250,250);
+	    back.setBounds(120,480,100,43);
+	    confirm.setBounds(320,420,100,43);
+
+	    pane.add(title);
+	    pane.add(bitcoinQR);
+	    pane.add(back);
+	    pane.add(confirm);
+	    pane.add(tableNumber);
+	    pane.add(btcLabel);
+	    pane.add(btcPrice);
+
+
+	    //Adding action listeners card, cash, bitcoin, and back buttons
+	    back.addActionListener(this);
+
+	    getContentPane().add(pane);
+	    setSize(800,600);
+	    setVisible(true);
+
+	  return pane;
+  }
+  
+  
+  public String getBTCPrice(String tot)
+  {
+		 String defURL = "https://blockchain.info/tobtc?currency=USD&value=";
+		  String string = "";
+		  BigDecimal bd = new BigDecimal("30.45");
+		  String stringVal = bd.toString();
+		  String getBTCVal = defURL + stringVal;
+		  try {
+		     URLConnection connection = new URL(
+		             getBTCVal)
+		             .openConnection();
+		     Scanner scanner = new Scanner(connection.getInputStream());
+		     while (scanner.hasNext()) {
+		         string += scanner.next() + " ";
+		     }
+		     scanner.close();
+		  } catch (IOException e) {
+		     e.printStackTrace();
+		  }
+		  return string;
+  } //Reference: http://stackoverflow.com/questions/21076075/read-first-text-line-of-an-url
 
   public void downloadImage(String addrStr)
   {
@@ -88,7 +144,7 @@ public class BitcoinPayment extends JFrame implements ActionListener {
     try {
         URL url = new URL(imageUrl);
         inputStream = url.openStream();
-        outputStream = new FileOutputStream("icons/addr.jpg");
+        outputStream = new FileOutputStream("./icons/addr.jpg");
 
         byte[] buffer = new byte[2048];
         int length;
@@ -115,7 +171,6 @@ public class BitcoinPayment extends JFrame implements ActionListener {
   }
 }//Reference: http://www.technicalkeeda.com/java-tutorials/how-to-download-image-from-url-using-java
 
-}
 
 //****************************************************************
 //******************* CUSTOMER ACTIONS      **********************
@@ -127,9 +182,21 @@ public void actionPerformed(ActionEvent e) {
   if( source == back){
     setVisible(false);
     CustomerTableScreen cts = new CustomerTableScreen(tableID);
+    db.disconnectFromDB();
     //System.out.println("CustomerTableScreen()");
+  }
+  else if(source == confirm)
+  {
+	  System.out.println("Success");
   }
 
 }
 
-} //end class MakePayment
+
+
+/*public static void main(String[] args)
+{
+	BitcoinPayment bp = new BitcoinPayment(1);
+}*/
+
+}
