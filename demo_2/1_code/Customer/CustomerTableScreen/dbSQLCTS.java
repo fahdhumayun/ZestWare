@@ -12,8 +12,8 @@ public class dbSQLCTS{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			myConn = DriverManager.getConnection("jdbc:mysql://ctsdb-cluster.cluster-c7ormjiryir8.us-east-2.rds.amazonaws.com:3306/ctsdb", "root", "12345678");
-
+			//myConn = DriverManager.getConnection("jdbc:mysql://ctsdb-cluster.cluster-c7ormjiryir8.us-east-2.rds.amazonaws.com:3306/ctsdb", "root", "12345678");
+			myConn = DriverManager.getConnection("jdbc:mysql:localhost:3306/cwsdb", "root","1234");
 			/* Create a statement */
 			myStmt = myConn.createStatement();
 
