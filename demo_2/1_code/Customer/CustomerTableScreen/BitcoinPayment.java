@@ -73,7 +73,12 @@ public class BitcoinPayment extends JFrame implements ActionListener {
 	  downloadImage(address);
 	    
 	  Font btcFont = new Font("Cambria", Font.BOLD,20);
-	  JLabel btcPrice = new JLabel(getBTCPrice(total));
+	  BigDecimal test = new BigDecimal(total);
+	  JLabel btcPrice;
+	  if(test.compareTo(BigDecimal.ZERO) != 0)
+		  btcPrice = new JLabel(getBTCPrice(total));
+	  else
+		  btcPrice = new JLabel("0.000000000");
 	  btcPrice.setBounds(328,365,150,50); 
 	  btcPrice.setFont(btcFont);
 
@@ -114,10 +119,8 @@ public class BitcoinPayment extends JFrame implements ActionListener {
   public String getBTCPrice(String tot)
   {
 		 String defURL = "https://blockchain.info/tobtc?currency=USD&value=";
-		  String string = "";
-		  BigDecimal bd = new BigDecimal("30.45");
-		  String stringVal = bd.toString();
-		  String getBTCVal = defURL + stringVal;
+		 String string = "";
+		 String getBTCVal = defURL + tot;
 		  try {
 		     URLConnection connection = new URL(
 		             getBTCVal)

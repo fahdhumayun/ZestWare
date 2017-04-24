@@ -106,4 +106,25 @@ public void setTotalPrice (int t_number, String totPrice) {
 	}
 }
 
+public void setAssistance(int tableID)
+{
+	try {
+		ResultSet setter;
+		setter = myStmt.executeQuery("select * from cts");
+
+	/* Process the result set */
+		String query2 = "update cts set needs_assistance = ? where table_id = ?";
+		
+		PreparedStatement pStmt = myConn.prepareStatement(query2);
+		pStmt.setBoolean(1, true);
+		pStmt.setInt(2, tableID);
+			
+		pStmt.executeUpdate();
+		
+	}
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
 }

@@ -675,12 +675,15 @@ public JPanel billPane(BigDecimal _bd)
   Font defaultFont = new Font("Cambria", Font.BOLD, 12);
   //Setting the fonts and location of the menu headers
   JLabel invoice = new JLabel("Total: " + _bd);
+  JLabel tblNum  = new JLabel("TableID: " + tableID);
   JLabel itemCol = new JLabel("Item(s)");
   JLabel qtyCol  = new JLabel("Quantity");
   invoice.setBounds(50,5,200,150);
   itemCol.setBounds(300,40,200,150);
   qtyCol.setBounds(450,40,200,150);
+  tblNum.setBounds(560,5,200,150);
   invoice.setFont(headerFont);
+  tblNum.setFont(headerFont);
   itemCol.setFont(defaultFont);
   qtyCol.setFont(defaultFont);
   ImageIcon cancel_Icon = new ImageIcon("icons/cancelOrder.gif");
@@ -749,6 +752,7 @@ public JPanel billPane(BigDecimal _bd)
 
   tbl.setBounds(250,130,300,250);
   billPane.add(tbl);
+  billPane.add(tblNum);
   billPane.add(invoice);
   billPane.add(cancel);
   billPane.add(itemCol);
