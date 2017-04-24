@@ -39,7 +39,22 @@ public class BitcoinPayment extends JFrame implements ActionListener {
     //Import the image icons for the buttons
     //Will be updated to generate QR Based on the customer menu choices
     //using either Blockchain.info API or a Custom Built class to generate scannable QR codes
-    ImageIcon bitcoin_Icon  = new ImageIcon("icons/tempQR.gif");
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+      // 1. Get a connection to database
+      Connection myConn = DriverManager.getConnection("ctsdb-cluster.cluster-c7ormjiryir8.us-east-2.rds.amazonaws.com:3306", "root", "12345678");
+      // 2. Create a statement
+      Statement myStmt = myConn.createStatement();
+      // 3. Execute SQL query
+      ResultSet btc_address;
+
+      t_profile = myStmt.executeQuery("select * from tables");
+    }catch (Exception e) {
+        e.printStackTrace();
+      }
+    downloadImage()
+
+    ImageIcon bitcoin_Icon  = new ImageIcon("icons/addr.gif");
     ImageIcon back_Icon     = new ImageIcon("icons/back.gif");
 
     bitcoinQR = new JButton(bitcoin_Icon);
@@ -61,6 +76,46 @@ public class BitcoinPayment extends JFrame implements ActionListener {
     setSize(800,600);
     setVisible(true);
     }
+
+  public void downloadImage(String addrStr)
+  {
+    String imageDef = "https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=";
+    String imageUrl = imageDef+addrStr;
+
+    InputStream inputStream = null;
+    OutputStream outputStream = null;
+
+    try {
+        URL url = new URL(imageUrl);
+        inputStream = url.openStream();
+        outputStream = new FileOutputStream("icons/addr.jpg");
+
+        byte[] buffer = new byte[2048];
+        int length;
+
+        while ((length = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, length);
+        }
+
+      } catch (MalformedURLException e) {
+        System.out.println("MalformedURLException :- " + e.getMessage());
+
+      }  catch (FileNotFoundException e) {
+        System.out.println("FileNotFoundException :- " + e.getMessage());
+      } catch (IOException e) {
+        System.out.println("IOException :- " + e.getMessage());
+
+      } finally {
+        try {
+          inputStream.close();
+          outputStream.close();
+      } catch (IOException e) {
+          System.out.println("Finally IOException :- " + e.getMessage());
+      }
+  }
+}//Reference: http://www.technicalkeeda.com/java-tutorials/how-to-download-image-from-url-using-java
+
+}
 
 //****************************************************************
 //******************* CUSTOMER ACTIONS      **********************

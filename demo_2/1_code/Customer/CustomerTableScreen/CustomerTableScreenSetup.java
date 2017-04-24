@@ -41,7 +41,7 @@ public class CustomerTableScreenSetup extends JFrame implements ActionListener {
     try {
       Class.forName("com.mysql.jdbc.Driver");
       // 1. Get a connection to database
-      Connection myConn = DriverManager.getConnection("jdbc:mysql://zest-ware-cluster.cluster-c7ormjiryir8.us-east-2.rds.amazonaws.com:3306/zestDB", "zestwareCustomer", "faheemisfriend");
+      Connection myConn = DriverManager.getConnection("customertablescreen-cluster.cluster-c7ormjiryir8.us-east-2.rds.amazonaws.com:3306", "root", "faheemisfriend");
       // 2. Create a statement
       Statement myStmt = myConn.createStatement();
       // 3. Execute SQL query

@@ -19,7 +19,7 @@ public class TestDownload {
         try {
             URL url = new URL(imageUrl);
             inputStream = url.openStream();
-            outputStream = new FileOutputStream("./menuImages/test.jpg");
+            outputStream = new FileOutputStream("./menuImages/addr.jpg");
 
             byte[] buffer = new byte[2048];
             int length;
