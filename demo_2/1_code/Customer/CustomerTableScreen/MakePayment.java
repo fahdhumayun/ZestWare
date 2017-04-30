@@ -82,14 +82,19 @@ public void actionPerformed(ActionEvent e) {
   Object source = e.getSource();
   if( source == card){
     setVisible(false);
-    
+
     //UnderConstruction uc = new UnderConstruction(tableID);
     //System.out.print("Card Payment Selected\n");
   }
   if( source == cash){
     setVisible(false);
+    CashPayment cp = new CashPayment(tableID);
     //UnderConstruction uc = new UnderConstruction(tableID);
     //System.out.print("Cash Payment Selected\n");
+  }
+  if( source == card){
+    CallAssistance ca = new CallAssistance(tableID);
+    setVisible(false);
   }
   if( source == bitcoin){
     setVisible(false);
