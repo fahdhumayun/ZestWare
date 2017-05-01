@@ -1,0 +1,31 @@
+/* Written, tested, and debugged by Raphaelle Marcial */
+
+body {
+
+  background: #cefdce;
+  
+}
+
+.logo{
+	display: flex;
+	justify-content: center;
+	position: relative;
+
+}
+
+.content{
+	display: flex;
+	justify-content: center;
+	position: relative;
+	
+
+}
+
+.table{
+	
+	display: flex;
+	justify-content: center;
+	position: relative;
+	border-collapse: collapse;
+	
+}
