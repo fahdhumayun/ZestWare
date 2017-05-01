@@ -3,7 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 
 //Coded by: Nathan Morgenstern
-//Tested by: --------------
+//Debugged by: Shehpar Sohail
+//Tested by: Fahd Humayun
 
 //****************************************************************
 //******************** MAKE PAYMENT (CTS) ************************

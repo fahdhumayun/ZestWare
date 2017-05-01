@@ -3,6 +3,9 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+//Coded by: Fahd Humayun
+//Debugged by: Shehpar Sohail
+//Tested by: Nathan Morgenstern
 public class dbSQLCTS{
   Connection myConn;
   Statement myStmt;
@@ -86,20 +89,20 @@ try {
 }
 
 public void setTotalPrice (int t_number, String totPrice) {
-	
+
 	try {
 		ResultSet setter;
 		setter = myStmt.executeQuery("select * from cts");
 
 	/* Process the result set */
 		String query2 = "update cts set total_price = ? where table_id = ?";
-		
+
 		PreparedStatement pStmt = myConn.prepareStatement(query2);
 		pStmt.setString(1, totPrice);
 		pStmt.setInt(2, t_number);
-			
+
 		pStmt.executeUpdate();
-		
+
 	}
 	catch (Exception e) {
 		e.printStackTrace();
@@ -114,13 +117,13 @@ public void setAssistance(int tableID)
 
 	/* Process the result set */
 		String query2 = "update cts set needs_assistance = ? where table_id = ?";
-		
+
 		PreparedStatement pStmt = myConn.prepareStatement(query2);
 		pStmt.setBoolean(1, true);
 		pStmt.setInt(2, tableID);
-			
+
 		pStmt.executeUpdate();
-		
+
 	}
 	catch (Exception e) {
 		e.printStackTrace();

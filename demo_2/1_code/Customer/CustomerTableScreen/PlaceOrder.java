@@ -7,6 +7,10 @@ import java.lang.*;
 import javax.swing.table.*;
 import javax.swing.JTable;
 
+//Coded by: Nathan Morgenstern
+//Debugged by: Shehpar Sohail
+//Tested by: Fahd Humayun
+
 public class PlaceOrder extends JFrame implements ActionListener
 {
   JTabbedPane tabPane;
@@ -965,7 +969,7 @@ public String incrString(String str)
   public void actionPerformed(ActionEvent e)
   {
     Object source = e.getSource();
-    
+
 
     if(source == grilledSalmon || source == grilledChicken || source == chickenWings ||
        source == spaghetti || source == lasagna || source == ravioli || source == whiteRice ||
@@ -1005,12 +1009,12 @@ public String incrString(String str)
     	setVisible(false);
         db.disconnectFromDB();
     }
-     
+
 
     //Update the billPane with the new values
     JPanel newBillPane = billPane(total);
     tabPane.setComponentAt(4,newBillPane);
-   
+
   }
 
 

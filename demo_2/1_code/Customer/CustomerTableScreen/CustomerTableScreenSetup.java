@@ -5,7 +5,8 @@ import java.sql.*;
 import java.util.*;
 
 //Coded by: Nathan Morgenstern
-//Tested by: --------------
+//Debugged by: Shehpar Sohail
+//Tested by: Fahd Humayun
 
 
 public class CustomerTableScreenSetup extends JFrame implements ActionListener {

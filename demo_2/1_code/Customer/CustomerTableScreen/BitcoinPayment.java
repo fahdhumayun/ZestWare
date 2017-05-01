@@ -14,7 +14,8 @@ import java.net.URLConnection;
 import java.util.Scanner;
 
 //Coded by: Nathan Morgenstern
-//Tested by: --------------
+//Debugged by: Shehpar Sohail
+//Tested by: Fahd Humayun
 
 //****************************************************************
 //*****************  BITCOIN PAYMENT (CTS)  **********************
@@ -36,11 +37,11 @@ public class BitcoinPayment extends JFrame implements ActionListener {
 	tableID = table_id;
 	db.connectToDB();
     JPanel payPane = needsPayment(tableID);
-      
+
     }
 
- 
-    
+
+
   public JPanel needsPayment(int table_id){
 
 	  tableID = table_id;
@@ -52,7 +53,7 @@ public class BitcoinPayment extends JFrame implements ActionListener {
 	  JLabel title = new JLabel("Bitcoin Payment (CTS)");
 	  JLabel tableNumber = new JLabel("Table # " + tableID);
 	  JLabel btcLabel = new JLabel(new ImageIcon("icons/btc.png"));
-	    
+
 	  title.setBounds(210,10,400,100);
 	  tableNumber.setBounds(520,480,300,43);
 	  btcLabel.setBounds(300,375,25,25);
@@ -61,7 +62,7 @@ public class BitcoinPayment extends JFrame implements ActionListener {
 	  Font font2 = new Font("Cambria", Font.BOLD, 20);
 	  title.setFont(font);
 	  tableNumber.setFont(font2);
-	    
+
 
 	  //Import the image icons for the buttons
 	  //Will be updated to generate QR Based on the customer menu choices
@@ -71,7 +72,7 @@ public class BitcoinPayment extends JFrame implements ActionListener {
 	  String total   = db.getTotalPrice(tableID);
 	  //System.out.println(address);
 	  downloadImage(address);
-	    
+
 	  Font btcFont = new Font("Cambria", Font.BOLD,20);
 	  BigDecimal test = new BigDecimal(total);
 	  JLabel btcPrice;
@@ -79,15 +80,15 @@ public class BitcoinPayment extends JFrame implements ActionListener {
 		  btcPrice = new JLabel(getBTCPrice(total));
 	  else
 		  btcPrice = new JLabel("0.000000000");
-	  btcPrice.setBounds(328,365,150,50); 
+	  btcPrice.setBounds(328,365,150,50);
 	  btcPrice.setFont(btcFont);
 
 	    //btcLabel.setBounds(300,375,25,25);
-	    
+
 	    ImageIcon bitcoin_Icon  = new ImageIcon("icons/addr.jpg");
 	    ImageIcon back_Icon     = new ImageIcon("icons/back.gif");
 	    ImageIcon confirm_Icon  = new ImageIcon("icons/confirm.gif");
-	    
+
 	    bitcoinQR = new JButton(bitcoin_Icon);
 	    back      = new JButton(back_Icon);
 	    confirm   = new JButton(confirm_Icon);
@@ -114,8 +115,8 @@ public class BitcoinPayment extends JFrame implements ActionListener {
 
 	  return pane;
   }
-  
-  
+
+
   public String getBTCPrice(String tot)
   {
 		 String defURL = "https://blockchain.info/tobtc?currency=USD&value=";

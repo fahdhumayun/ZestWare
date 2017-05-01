@@ -5,7 +5,8 @@ import java.lang.*;
 import java.math.BigDecimal;
 
 //Coded by: Nathan Morgenstern
-//Tested by: --------------
+//Debugged by: Shehpar Sohail
+//Tested by: Fahd Humayun
 
 //****************************************************************
 //*****************  BITCOIN PAYMENT (CTS)  **********************

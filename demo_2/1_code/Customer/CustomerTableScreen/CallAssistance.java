@@ -3,7 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 
 //Coded by: Nathan Morgenstern
-//Tested by: --------------
+//Debugged by: Shehpar Sohail
+//Tested by: Fahd Humayun
 
 //****************************************************************
 //******************* CALL ASSISTANCE (CTS) **********************
@@ -28,7 +29,7 @@ public class CallAssistance extends JFrame implements ActionListener {
     JLabel title = new JLabel("Calling Assistance (CTS)");
 	JLabel tableNumber = new JLabel("Table # " + tableID);
     JLabel notification = new JLabel("A server will be with you shortly....");
-	
+
     title.setBounds(230,50,600,100);
     tableNumber.setBounds(600,450,400,43);
     notification.setBounds(120,150,700,150);
