@@ -1,3 +1,6 @@
+<!--
+Written, tested, and debugged by: Ama Freeman
+-->
 <?php
 //Connect to database to delete item
 $con = mysqli_connect("localhost", "id964298_zestwaredatabase", "zestware123!", "id964298_zestdatabase");
