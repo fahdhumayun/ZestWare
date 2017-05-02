@@ -1,4 +1,7 @@
 /* ReservationConfirmed.java */
+// written by:	Fahd Humayun
+// tested by:	Shehpar Sohail
+// debugged by:	Nathan Morgenstern
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

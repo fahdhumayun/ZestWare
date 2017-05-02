@@ -1,6 +1,9 @@
-import java.io.IOException;
-
 /* UnitTests.java */
+// written by:	Fahd Humayun
+// tested by:	Shehpar Sohail
+// debugged by:	Nathan Morgenstern
+
+import java.io.IOException;
 
 public class UnitTests {
 	
@@ -132,7 +135,7 @@ public class UnitTests {
 			e.printStackTrace();
 		}
 		
-		
+		/*
 		
 		UnitTests obj = new UnitTests();
 		
@@ -140,7 +143,7 @@ public class UnitTests {
 		System.out.println("******** Unit Testing of dbSQL Class ********");
 		System.out.println("*********************************************\n");
 		obj.dbSQLTests();
-		
+		*/
 	}
 
 }

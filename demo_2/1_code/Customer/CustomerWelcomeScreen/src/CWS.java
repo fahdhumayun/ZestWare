@@ -1,4 +1,7 @@
 /* CWS.java */
+// written by:	Fahd Humayun
+// tested by:	Shehpar Sohail
+// debugged by:	Nathan Morgenstern
 
 import java.awt.event.*;
 import javax.swing.*;
@@ -36,10 +39,6 @@ public class CWS extends JFrame implements ActionListener {
 		panel.add(title);
 		panel.add(newReservation);
 		panel.add(preReservation);
-		
-		JLabel bg = new JLabel("icons/bg.gif");
-		bg.setLayout(new BorderLayout() );
-		setContentPane( bg );
 		
 		getContentPane().add(panel);
 		setSize(800, 600);

@@ -1,4 +1,5 @@
 /* ExceptionsModified.java */
+// written by:	Fahd Humayun
 
 public class ExceptionsModified extends Exception {
 	

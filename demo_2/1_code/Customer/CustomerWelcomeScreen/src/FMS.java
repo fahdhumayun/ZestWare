@@ -1,4 +1,7 @@
 /* FMS.java */
+// written by:	Fahd Humayun
+// tested by:	Shehpar Sohail
+// debugged by:	Nathan Morgenstern
 
 import java.awt.event.*;
 import java.text.ParseException;
