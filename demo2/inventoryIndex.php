@@ -92,7 +92,6 @@ if(isset($_POST['delete'])){
     <th>Item Total</th>
     <th>Unit Measurement</th>
     <th>Cost Per Unit</th>
-    <th>Delete</th>
     </tr>";
     
     while($record = mysqli_fetch_array($itemNames)){
@@ -102,10 +101,7 @@ if(isset($_POST['delete'])){
         echo "<td>" . $record['itemTotal'] . "</td>";
         echo "<td>" . $record['unitMeasurement'] . "</td>";
         echo "<td>" . $record['itemCostPerUnit'] . "</td>";   
- //Delete Button
-        echo '<td>'."<a href=\"https://zestware123.000webhostapp.com/delete.php?id=".$record['itemID']. "'><strong>DELETE</strong>".'</td>';
 
-        echo "</tr>";
     }
     
     echo "</table>";
