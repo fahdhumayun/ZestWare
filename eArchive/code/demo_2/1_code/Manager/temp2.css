@@ -1,0 +1,72 @@
+/* Written, tested, and debugged by Raphaelle Marcial */
+
+body {
+  background: #cefdce;
+  font: sans-serif;
+}
+
+
+@media only screen and (max-width: 1050px) {
+
+    body 
+    {
+      background-color: lightblue;
+      margin: 0 auto !important;
+        float: none !important;
+
+    }
+    .logo
+    {
+
+      display: block;
+      margin: auto;
+      width: 90%;
+      /*display: flex;*/
+      justify-content: center;
+      position: relative;
+
+    }
+    .content
+    {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      font: sans-serif;
+    }
+    .table
+    {
+      display: block;
+      margin: auto;
+      width: 65%;
+      /*display: flex;*/
+      justify-content: center;
+      position: center;
+
+  
+    }
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font: sans-serif;
+  
+
+}
+
+.table{
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  
+}
